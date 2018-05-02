@@ -81,7 +81,7 @@ end
         % objects in each frame, and playing the video.
         
         % Create a video file reader.
-        obj.reader = vision.VideoFileReader('offsides_samples.mp4');
+        obj.reader = vision.VideoFileReader('offsides_clip3.mp4');
         
         % Create two video players, one to display the video,
         % and one to display the foreground mask.
@@ -105,7 +105,7 @@ end
         
         obj.blobAnalyser = vision.BlobAnalysis('BoundingBoxOutputPort', true, ...
             'AreaOutputPort', true, 'CentroidOutputPort', true, ...
-            'MinimumBlobArea', 400);
+            'MaximumBlobArea', 800, 'MinimumBlobArea',400);
     end
 
 %% Initialize Tracks
