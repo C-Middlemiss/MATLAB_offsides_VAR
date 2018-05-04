@@ -53,27 +53,57 @@ This semester, working on the identification of offsides in soccer through an au
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{INTRODUCTION}
 
+Offsides is one of the most challenging and important rules to enforce in the game of soccer. An incorrect or missed call can swing the tide of an entire game or even tournament. A player is considered in an offsides position if they are in the opposing teams half, further forward than the ball, and further forward than the opposing teams second to last defender. A player commits an offsides offense if they are in an offsides position at the time of a forward pass or shot from one of their teammates, and then that player interferes with (touches) the ball. 
+
+The way offsides is currently officiated is through two sideline assistant referees who each patrol one half of the field along opposite sidelines. These referees are forces to watch the ball, the players, and stay in line with the second to last defender all while evaluating what is going on around them and looking for a variety of offenses as well as offsides. All of these factors combined with the lighting speed of play at which soccer is run makes it nearly impossible for officials to be fully accurate. This leads to inconsistencies in how the game is called which, in the case of offsides, can result in wrongly disallowed goals (offsides called when no offsides was present) or wrongly allowed goals (offsides was present but not called).
+
+The modern game of soccer has already moved to eliminate incontestabilities in the way the game is officiated by implementing goal line technology in many of the worlds most competitive leagues. This is technology designed to determine when a ball crosses the goal line and prevent wrongly allowed or disallowed goals in instances where the referees cannot clearly see the positioning of the ball. This has the same gravity of an effect on the game that an incorrect offsides call can but so far no system has been developed to increase the accuracy of offsides officiating. This is the system we have tried to develop. However, to truly implement such a system on a full game scale there would need to be multiple cameras at set heights with predetermined variables in places. Thus we decided to focus on identifying instances of offsides from a fixed camera position in video clips designed to test human referees determine offsides. 
 
 
 \section{Procedure}
 
 \subsection{object tracking of the soccer ball}
 
+In order to track the soccer ball the Motion-Based Multiple Object Tracking package from MATLAB had to be downloaded. This package specializes in tracking an object's movement based on blob analysis between individual frames. The parameters of the blob-analysis were altered to track objects with a 'MaxiumumBlobArea' of 800 and a 'MinimumBlobarea' of 400. These parameters allowed for an object the size of a soccerball to be tracked while excluding other moving objects such as players. 
+
+
 \subsection{measuring the balls velocity to determine a "forward" pass}
 
+The soccer ball object is stored as a centroid allowing its position to be tracked on a frame by frame basis with an x-coordinate and a y-coordinate. The x-coordinate is then extracted because at the moment of a forward pass the x-coordinate experiences a drastic jump in value. The x-coordinate in the first frame is stored and then comapred with the x-value in the next frame. Since the ball may be experiencing a steady increase in x-coordinate a threshold of 1.25 is set. If the previous frame's x-coordinate multiplied by 1.25 is less than the second frame's x-coordinate it is determined that a forward pass has occured. 
+
 \subsection{isolating the still frame from the video at the time of the start of the forward pass}
+
+When it is determined that a forward pass has occured the algorithm breaks out of the loop that is cycling through the individual frames. As the loop is broken the current image is sent into an image processing function that analyses the position of the ball and players to see if an offsides offence occured. 
 
 \subsection{segmenting this frame to identify key features}
 
 \subsection{classifying features}
 
+We were easily able to handle the classifications of individual images using Google net through the MATLAB machine learning package. Google net is a pre-trained image classified that is able to identify thousands of object. Important to use were the ball, ball player, and pedestrian object. Google net can correctly identify a "ballplayer" whenever a person is in a frame with the ball. It can correctly identify a ball when it is passed in (although we are also able to identify the ball through our tracking so could theoretically pass a tagged image forward identifying its position) . Finally it can identify people, which is most important as not all players on the field will be in possession of the ball at any given time. 
+
+Our feature classification is not yet able to determine which team a player is on. However, this functionality could theoretically be added through the use of a histogram analysis. As players on different teams will wear different color jerseys analyzing the prevalent colors in each segment containing a player should allow us to identify which player is on each team. 
+
 \subsection{determining whether any player was in an offside position}
+
+This was one of our most difficult tasks to accomplish. Since we were not able to determine what players were on what teams, it is impossible to decide whether or not a player was in an offsides position. 
+
 
 \section{Results and Discussion}
 
+Limitations, and how we would move past them
+
+
 \section{Present Issues}
 
+**Andrew** 
+
 \section{Future Work}
+
+We have done a large amount of research into the future of our program. We think that in order to implement such a system on a large scale we would need a Fixed multi-camera system capable of processing all of the field and capturing all players at the same time [1]. This would allow us to take into account the instances where the ball or players traveled in the air, or behind other players as these are both instances that are challenging for a single camera system. In addition to this we would be able to accurately triangulate the positions of objects on the field with multiple cameras, something we have been unable to achieve using a single camera input. In order to calculate the position of an offside line, it is necessary to obtain the world coordinates and team information of all players and do a formation analysis based on these features [2]. Thus without the multiple camera system it will be nearly impossible to determine offsides correctly from video at any higher degree of accuracy than a typical assistant referee.
+
+We have would like to utilize the same senses present in the ball that the current system of goal line technology uses. This could allow us to have an accurate representation of when a forward pass occurs by giving the exact moment in which the balls vector changes. While we would be able to generally identify this from a multiple camera system, having data from sensors would drastically increase the accuracy of our timing and decrease the computation workload on our program. The decrease in workload would come because our current system requires comparing the balls coordinates between various frames in order to determine when it changes its vector. This requires that our system compare the vector between frames and then backtrack to the frame where the vector changed. The accuracy increase would come because we would have data about when a pass occurs and not have to threshold the vector (ie. slow forward passes or dribbles would register with the sensors but might not with out camera based system) 
+
+
 
 \addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
 																	% on the last page of the document manually. It shortens
@@ -92,9 +122,7 @@ Applications, vol. 29, no. 2, May 2017, pp. 187–206., doi:10.1007/s00138-017-0
 \bibitem{c2}Hashimoto, Sadatsugu, and Shinji Ozawa. “A System for Automatic Judgment of 
 Offsides in Soccer Games.” 2006 IEEE International Conference on Multimedia and Expo, 2006, doi:10.1109/icme.2006.262924.
 
-\bibitem{c3}Yang, Ying, and Danyang Li. “Robust player detection and tracking in broadcast 
-soccer video based on enhanced particle filter.” Journal of Visual 
-Communication and Image Representation, vol. 46, 2017, pp. 81–94., doi:10.1016/j.jvcir.2017.03.008.
 
 \end{thebibliography}
 \end{document}
+
