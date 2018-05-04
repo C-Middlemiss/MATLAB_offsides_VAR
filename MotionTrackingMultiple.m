@@ -71,8 +71,8 @@ while ~isDone(obj.reader)
     
     hist = updateAssignedTracks(hist, num);
     if(hist == -1)
-        %calum's script
-        %calumScript(frame); 
+        g_net_classifier(frame);
+        disp("image processed.")
     end
     
     updateUnassignedTracks();
@@ -283,11 +283,11 @@ end
             
             if ((hist/(num-1)) *1.25<  (centroid_value(end)/num))
                 disp("went through!" +"     "  + hist(end) +"    " + centroid_value(end));
-                hist=-1; 
-            end
+                hist= -1; 
+            else
             
             hist = centroidArray(hist, centroid_value(end));
-            
+            end
             
             
             
