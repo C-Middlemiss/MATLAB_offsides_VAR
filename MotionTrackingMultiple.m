@@ -55,10 +55,12 @@ tracks = initializeTracks(); % Create an empty array of tracks.
 nextId = 1; % ID of the next track
 
 % Detect moving objects, and track them across video frames.
- a = zeros(1,8); 
- b=0; 
- hist = centroidArray(a, b); 
+ a = zeros(); 
+ %start num at 3 becasue there are 3 training frames
+ num =3;  
+ hist = centroidArray(a, 1); 
 while ~isDone(obj.reader)
+    num = num +1 ; 
     
     frame = readFrame();
     [centroids, bboxes, mask] = detectObjects(frame);
@@ -66,7 +68,7 @@ while ~isDone(obj.reader)
     [assignments, unassignedTracks, unassignedDetections] = ...
         detectionToTrackAssignment();
     
-    updateAssignedTracks(hist);
+    updateAssignedTracks(hist, num);
     
     updateUnassignedTracks();
     deleteLostTracks();
@@ -262,7 +264,7 @@ end
 % the new bounding box, and increases the age of the track and the total
 % visible count by 1. Finally, the function sets the invisible count to 0. 
 
-    function updateAssignedTracks(hist)
+    function updateAssignedTracks(hist, num)
        
         numAssignedTracks = size(assignments, 1);
         for i = 1:numAssignedTracks
@@ -273,18 +275,18 @@ end
  
            centroid_value = int32(centroid);
            
-            hist = centroidArray(a, centroid_value); 
             
-            if (hist(end)>centroid_value)
-                disp("went trhough"); 
+            if ((hist(end)/(num-1))<  (centroid_value(end)/num))
+                disp("went through!" +"     "  + hist(end) +"    " + centroid_value(end));
+                hist = centroidArray(hist, centroid_value(end)); 
+                disp("successful!" +"     "  + hist(end) +"    " + centroid_value(end));
+
                 
-            else
-                disp(hist(end))
+  
                 
-               hist = centroidArray(hist, centroid_value); 
             
             end
-            
+            hist = centroidArray(hist, centroid_value(end));
             % Correct the estimate of the object's location
             % using the new detection.
             correct(tracks(trackIdx).kalmanFilter, centroid);
