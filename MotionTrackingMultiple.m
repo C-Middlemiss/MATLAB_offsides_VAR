@@ -68,7 +68,7 @@ while ~isDone(obj.reader)
     [assignments, unassignedTracks, unassignedDetections] = ...
         detectionToTrackAssignment();
     
-    updateAssignedTracks(hist, num);
+    hist = updateAssignedTracks(hist, num);
     
     updateUnassignedTracks();
     deleteLostTracks();
@@ -264,7 +264,7 @@ end
 % the new bounding box, and increases the age of the track and the total
 % visible count by 1. Finally, the function sets the invisible count to 0. 
 
-    function updateAssignedTracks(hist, num)
+    function hist = updateAssignedTracks(hist, num)
        
         numAssignedTracks = size(assignments, 1);
         for i = 1:numAssignedTracks
@@ -273,20 +273,18 @@ end
             centroid = centroids(detectionIdx, :);
             bbox = bboxes(detectionIdx, :);
  
-           centroid_value = int32(centroid);
+            centroid_value = int32(centroid);
            
             
-            if ((hist(end)/(num-1))<  (centroid_value(end)/num))
+            if ((hist/(num-1)) *1.25<  (centroid_value(end)/num))
                 disp("went through!" +"     "  + hist(end) +"    " + centroid_value(end));
-                hist = centroidArray(hist, centroid_value(end)); 
-                disp("successful!" +"     "  + hist(end) +"    " + centroid_value(end));
-
-                
-  
-                
-            
             end
+            
             hist = centroidArray(hist, centroid_value(end));
+            
+            
+            
+            
             % Correct the estimate of the object's location
             % using the new detection.
             correct(tracks(trackIdx).kalmanFilter, centroid);
@@ -303,6 +301,7 @@ end
             tracks(trackIdx).totalVisibleCount = ...
                 tracks(trackIdx).totalVisibleCount + 1;
             tracks(trackIdx).consecutiveInvisibleCount = 0;
+            hist; 
         end
     end
 
