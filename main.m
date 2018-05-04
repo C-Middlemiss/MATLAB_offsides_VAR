@@ -1,3 +1,4 @@
 %main runner for offsides VAR
 
-v = VideoReader('offsides_samples.mp4')
+I = imread('clip2_still.png'); 
+g_net_classifier(I);

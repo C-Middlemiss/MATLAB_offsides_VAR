@@ -93,7 +93,11 @@ end
         % objects in each frame, and playing the video.
         
         % Create a video file reader.
+<<<<<<< HEAD
         obj.reader = vision.VideoFileReader('testClip2.mp4');
+=======
+        obj.reader = vision.VideoFileReader('plsWork.mpeg');
+>>>>>>> 1569f3ccd2e8767051ebec016ec5fd67ec8c9a12
       
         % Create two video players, one to display the video,
         % and one to display the foreground mask.

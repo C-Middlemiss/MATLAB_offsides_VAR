@@ -1,236 +1,128 @@
-% Template for ICIP-2012 paper; to be used with:
-%          spconf.sty  - ICASSP/ICIP LaTeX style file, and
-%          IEEEbib.bst - IEEE bibliography style file.
-% --------------------------------------------------------------------------
-\documentclass{article}
-\usepackage{spconf,amsmath,graphicx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901234567890
+%        1         2         3         4         5         6         7         8
 
-% Example definitions.
-% --------------------
-\def\x{{\mathbf x}}
-\def\L{{\cal L}}
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}  % Comment this line out
+																													% if you need a4paper
+%\documentclass[a4paper, 10pt, conference]{ieeeconf}      % Use this line for a4
+																													% paper
 
-% Title.
-% ------
-\title{AUTHOR GUIDELINES FOR ICIP 2012 PROCEEDINGS MANUSCRIPTS}
-%
-% Single address.
-% ---------------
-\name{Author(s) Name(s)\thanks{Thanks to XYZ agency for funding.}}
-\address{Author Affiliation(s)}
-%
-% For example:
-% ------------
-%\address{School\\
-%	Department\\
-%	Address}
-%
-% Two addresses (uncomment and modify for two-address case).
-% ----------------------------------------------------------
-%\twoauthors
-%  {A. Author-one, B. Author-two\sthanks{Thanks to XYZ agency for funding.}}
-%	{School A-B\\
-%	Department A-B\\
-%	Address A-B}
-%  {C. Author-three, D. Author-four\sthanks{The fourth author performed the work
-%	while at ...}}
-%	{School C-D\\
-%	Department C-D\\
-%	Address C-D}
-%
+\IEEEoverridecommandlockouts                              % This command is only
+																													% needed if you want to
+																													% use the \thanks command
+\overrideIEEEmargins
+% See the \addtolength command later in the file to balance the column lengths
+% on the last page of the document
+
+
+
+% The following packages can be found on http:\\www.ctan.org
+%\usepackage{graphics} % for pdf, bitmapped graphics files
+%\usepackage{epsfig} % for postscript graphics files
+%\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{times} % assumes new font selection scheme installed
+%\usepackage{amsmath} % assumes amsmath package installed
+%\usepackage{amssymb}  % assumes amsmath package installed
+
+\title{\LARGE \bf
+VAR System for Recognizing Offsides in Soccer
+}
+
+
+\author{Calum Middlemiss, Andrew Allen, and Colin Panarra% <-this % stops a space
+}
+
+
 \begin{document}
-%\ninept
-%
+
+
+
 \maketitle
-%
+\thispagestyle{empty}
+\pagestyle{empty}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{abstract}
-The abstract should appear at the top of the left-hand column of text, about
-0.5 inch (12 mm) below the title area and no more than 3.125 inches (80 mm) in
-length.  Leave a 0.5 inch (12 mm) space between the end of the abstract and the
-beginning of the main text.  The abstract should contain about 100 to 150
-words, and should be identical to the abstract text submitted electronically
-along with the paper cover sheet.  All manuscripts must be in English, printed
-in black ink.
+
+This semester, working on the identification of offsides in soccer through an automated Video Assistant referee system has culminated in an imperfect network of methods that if properly linked could allow for a functional VAR system. In order to identify instances of offsides through video we broke the problem down into key segments that, if executed sequentially, would allow us to determine when a player was in an offsides position at the time of a forward pass. These segments are object tracking of the soccer ball, measuring the balls velocity to determine a "forward" pass, isolating the still frame from the video at the time of the start of the forward pass, segmenting this frame to identify key features, classifying these features, and determining whether any player was in an offside position. 
+
 \end{abstract}
-%
-\begin{keywords}
-One, two, three, four, five
-\end{keywords}
-%
-\section{Introduction}
-\label{sec:intro}
-
-These guidelines include complete descriptions of the fonts, spacing, and
-related information for producing your proceedings manuscripts. Please follow
-them and if you have any questions, direct them to Conference Management
-Services, Inc.: Phone +1-979-846-6800 or email
-to \\\texttt{papers@icip2012.com}.
-
-\section{Formatting your paper}
-\label{sec:format}
-
-All printed material, including text, illustrations, and charts, must be kept
-within a print area of 7 inches (178 mm) wide by 9 inches (229 mm) high. Do
-not write or print anything outside the print area. The top margin must be 1
-inch (25 mm), except for the title page, and the left margin must be 0.75 inch
-(19 mm).  All {\it text} must be in a two-column format. Columns are to be 3.39
-inches (86 mm) wide, with a 0.24 inch (6 mm) space between them. Text must be
-fully justified.
-
-\section{PAGE TITLE SECTION}
-\label{sec:pagestyle}
-
-The paper title (on the first page) should begin 1.38 inches (35 mm) from the
-top edge of the page, centered, completely capitalized, and in Times 14-point,
-boldface type.  The authors' name(s) and affiliation(s) appear below the title
-in capital and lower case letters.  Papers with multiple authors and
-affiliations may require two or more lines for this information. Please note
-that papers should not be submitted blind; include the authors' names on the
-PDF.
-
-\section{TYPE-STYLE AND FONTS}
-\label{sec:typestyle}
-
-To achieve the best rendering both in the proceedings and from the CD-ROM, we
-strongly encourage you to use Times-Roman font.  In addition, this will give
-the proceedings a more uniform look.  Use a font that is no smaller than nine
-point type throughout the paper, including figure captions.
-
-In nine point type font, capital letters are 2 mm high.  {\bf If you use the
-smallest point size, there should be no more than 3.2 lines/cm (8 lines/inch)
-vertically.}  This is a minimum spacing; 2.75 lines/cm (7 lines/inch) will make
-the paper much more readable.  Larger type sizes require correspondingly larger
-vertical spacing.  Please do not double-space your paper.  TrueType or
-Postscript Type 1 fonts are preferred.
-
-The first paragraph in each section should not be indented, but all the
-following paragraphs within the section should be indented as these paragraphs
-demonstrate.
-
-\section{MAJOR HEADINGS}
-\label{sec:majhead}
-
-Major headings, for example, "1. Introduction", should appear in all capital
-letters, bold face if possible, centered in the column, with one blank line
-before, and one blank line after. Use a period (".") after the heading number,
-not a colon.
-
-\subsection{Subheadings}
-\label{ssec:subhead}
-
-Subheadings should appear in lower case (initial word capitalized) in
-boldface.  They should start at the left margin on a separate line.
- 
-\subsubsection{Sub-subheadings}
-\label{sssec:subsubhead}
-
-Sub-subheadings, as in this paragraph, are discouraged. However, if you
-must use them, they should appear in lower case (initial word
-capitalized) and start at the left margin on a separate line, with paragraph
-text beginning on the following line.  They should be in italics.
-
-\section{PRINTING YOUR PAPER}
-\label{sec:print}
-
-Print your properly formatted text on high-quality, 8.5 x 11-inch white printer
-paper. A4 paper is also acceptable, but please leave the extra 0.5 inch (12 mm)
-empty at the BOTTOM of the page and follow the top and left margins as
-specified.  If the last page of your paper is only partially filled, arrange
-the columns so that they are evenly balanced if possible, rather than having
-one long column.
-
-In LaTeX, to start a new column (but not a new page) and help balance the
-last-page column lengths, you can use the command ``$\backslash$pagebreak'' as
-demonstrated on this page (see the LaTeX source below).
-
-\section{PAGE NUMBERING}
-\label{sec:page}
-
-Please do {\bf not} paginate your paper.  Page numbers, session numbers, and
-conference identification will be inserted when the paper is included in the
-proceedings.
-
-\section{ILLUSTRATIONS, GRAPHS, AND PHOTOGRAPHS}
-\label{sec:illust}
-
-Illustrations must appear within the designated margins.  They may span the two
-columns.  If possible, position illustrations at the top of columns, rather
-than in the middle or at the bottom.  Caption and number every illustration.
-All halftone illustrations must be clear black and white prints.  Colors may be
-used, but they should be selected so as to be readable when printed on a
-black-only printer.
-
-Since there are many ways, often incompatible, of including images (e.g., with
-experimental results) in a LaTeX document, below is an example of how to do
-this \cite{Lamp86}.
-
-% Below is an example of how to insert images. Delete the ``\vspace'' line,
-% uncomment the preceding line ``\centerline...'' and replace ``imageX.ps''
-% with a suitable PostScript file name.
-% -------------------------------------------------------------------------
-\begin{figure}[htb]
-
-\begin{minipage}[b]{1.0\linewidth}
-	\centering
-	\centerline{\includegraphics[width=8.5cm]{image1}}
-%  \vspace{2.0cm}
-	\centerline{(a) Result 1}\medskip
-\end{minipage}
-%
-\begin{minipage}[b]{.48\linewidth}
-	\centering
-	\centerline{\includegraphics[width=4.0cm]{image3}}
-%  \vspace{1.5cm}
-	\centerline{(b) Results 3}\medskip
-\end{minipage}
-\hfill
-\begin{minipage}[b]{0.48\linewidth}
-	\centering
-	\centerline{\includegraphics[width=4.0cm]{image4}}
-%  \vspace{1.5cm}
-	\centerline{(c) Result 4}\medskip
-\end{minipage}
-%
-\caption{Example of placing a figure with experimental results.}
-\label{fig:res}
-%
-\end{figure}
 
 
-% To start a new column (but not a new page) and help balance the last-page
-% column length use \vfill\pagebreak.
-% -------------------------------------------------------------------------
-\vfill
-\pagebreak
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{INTRODUCTION}
+
+Offsides is one of the most challenging and important rules to enforce in the game of soccer. An incorrect or missed call can swing the tide of an entire game or even tournament. A player is considered in an offsides position if they are in the opposing teams half, further forward than the ball, and further forward than the opposing teams second to last defender. A player commits an offsides offense if they are in an offsides position at the time of a forward pass or shot from one of their teammates, and then that player interferes with (touches) the ball. 
+
+The way offsides is currently officiated is through two sideline assistant referees who each patrol one half of the field along opposite sidelines. These referees are forces to watch the ball, the players, and stay in line with the second to last defender all while evaluating what is going on around them and looking for a variety of offenses as well as offsides. All of these factors combined with the lighting speed of play at which soccer is run makes it nearly impossible for officials to be fully accurate. This leads to inconsistencies in how the game is called which, in the case of offsides, can result in wrongly disallowed goals (offsides called when no offsides was present) or wrongly allowed goals (offsides was present but not called).
+
+The modern game of soccer has already moved to eliminate incontestabilities in the way the game is officiated by implementing goal line technology in many of the worlds most competitive leagues. This is technology designed to determine when a ball crosses the goal line and prevent wrongly allowed or disallowed goals in instances where the referees cannot clearly see the positioning of the ball. This has the same gravity of an effect on the game that an incorrect offsides call can but so far no system has been developed to increase the accuracy of offsides officiating. This is the system we have tried to develop. However, to truly implement such a system on a full game scale there would need to be multiple cameras at set heights with predetermined variables in places. Thus we decided to focus on identifying instances of offsides from a fixed camera position in video clips designed to test human referees determine offsides. 
 
 
-\section{FOOTNOTES}
-\label{sec:foot}
+\section{Procedure}
 
-Use footnotes sparingly (or not at all!) and place them at the bottom of the
-column on the page on which they are referenced. Use Times 9-point type,
-single-spaced. To help your readers, avoid using footnotes altogether and
-include necessary peripheral observations in the text (within parentheses, if
-you prefer, as in this sentence).
+\subsection{object tracking of the soccer ball}
+
+In order to track the soccer ball the Motion-Based Multiple Object Tracking package from MATLAB had to be downloaded. This package specializes in tracking an object's movement based on blob analysis between individual frames. The parameters of the blob-analysis were altered to track objects with a 'MaxiumumBlobArea' of 800 and a 'MinimumBlobarea' of 400. These parameters allowed for an object the size of a soccerball to be tracked while excluding other moving objects such as players. 
 
 
-\section{COPYRIGHT FORMS}
-\label{sec:copyright}
+\subsection{measuring the balls velocity to determine a "forward" pass}
 
-You must include your fully completed, signed IEEE copyright release form when
-you submit your paper. We {\bf must} have this form before your paper can be
-published in the proceedings.
+The soccer ball object is stored as a centroid allowing its position to be tracked on a frame by frame basis with an x-coordinate and a y-coordinate. The x-coordinate is then extracted because at the moment of a forward pass the x-coordinate experiences a drastic jump in value. The x-coordinate in the first frame is stored and then comapred with the x-value in the next frame. Since the ball may be experiencing a steady increase in x-coordinate a threshold of 1.25 is set. If the previous frame's x-coordinate multiplied by 1.25 is less than the second frame's x-coordinate it is determined that a forward pass has occured. 
 
-\section{REFERENCES}
-\label{sec:ref}
+\subsection{isolating the still frame from the video at the time of the start of the forward pass}
 
-List and number all bibliographical references at the end of the paper.  The references can be numbered in alphabetic order or in order of appearance in the document.  When referring to them in the text, type the corresponding reference number in square brackets as shown at the end of this sentence \cite{C2}.
+When it is determined that a forward pass has occured the algorithm breaks out of the loop that is cycling through the individual frames. As the loop is broken the current image is sent into an image processing function that analyses the position of the ball and players to see if an offsides offence occured. 
 
-% References should be produced using the bibtex program from suitable
-% BiBTeX files (here: strings, refs, manuals). The IEEEbib.bst bibliography
-% style file from IEEE produces unsorted bibliography list.
-% -------------------------------------------------------------------------
-\bibliographystyle{IEEEbib}
-\bibliography{strings,refs}
+\subsection{segmenting this frame to identify key features}
 
+\subsection{classifying features}
+
+We were easily able to handle the classifications of individual images using Google net through the MATLAB machine learning package. Google net is a pre-trained image classified that is able to identify thousands of object. Important to use were the ball, ball player, and pedestrian object. Google net can correctly identify a "ballplayer" whenever a person is in a frame with the ball. It can correctly identify a ball when it is passed in (although we are also able to identify the ball through our tracking so could theoretically pass a tagged image forward identifying its position) . Finally it can identify people, which is most important as not all players on the field will be in possession of the ball at any given time. 
+
+Our feature classification is not yet able to determine which team a player is on. However, this functionality could theoretically be added through the use of a histogram analysis. As players on different teams will wear different color jerseys analyzing the prevalent colors in each segment containing a player should allow us to identify which player is on each team. 
+
+\subsection{determining whether any player was in an offside position}
+
+This was one of our most difficult tasks to accomplish. Since we were not able to determine what players were on what teams, it is impossible to decide whether or not a player was in an offsides position. 
+
+
+\section{Results and Discussion}
+
+Limitations, and how we would move past them
+
+
+\section{Present Issues}
+
+**Andrew** 
+
+\section{Future Work}
+
+We have done a large amount of research into the future of our program. We think that in order to implement such a system on a large scale we would need a Fixed multi-camera system capable of processing all of the field and capturing all players at the same time [1]. This would allow us to take into account the instances where the ball or players traveled in the air, or behind other players as these are both instances that are challenging for a single camera system. In addition to this we would be able to accurately triangulate the positions of objects on the field with multiple cameras, something we have been unable to achieve using a single camera input. In order to calculate the position of an offside line, it is necessary to obtain the world coordinates and team information of all players and do a formation analysis based on these features [2]. Thus without the multiple camera system it will be nearly impossible to determine offsides correctly from video at any higher degree of accuracy than a typical assistant referee.
+
+We have would like to utilize the same senses present in the ball that the current system of goal line technology uses. This could allow us to have an accurate representation of when a forward pass occurs by giving the exact moment in which the balls vector changes. While we would be able to generally identify this from a multiple camera system, having data from sensors would drastically increase the accuracy of our timing and decrease the computation workload on our program. The decrease in workload would come because our current system requires comparing the balls coordinates between various frames in order to determine when it changes its vector. This requires that our system compare the vector between frames and then backtrack to the frame where the vector changed. The accuracy increase would come because we would have data about when a pass occurs and not have to threshold the vector (ie. slow forward passes or dribbles would register with the sensors but might not with out camera based system) 
+
+
+
+\addtolength{\textheight}{-12cm}   % This command serves to balance the column lengths
+																	% on the last page of the document manually. It shortens
+																	% the textheight of the last page by a suitable amount.
+																	% This command does not take effect until the next page
+																	% so it should come on the page before the last. Make
+																	% sure that you do not shorten the textheight too much.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{thebibliography}{99}
+
+\bibitem{c1} Direkoglu, Cem, et al. “Player detection in field sports.” Machine Vision and 
+Applications, vol. 29, no. 2, May 2017, pp. 187–206., doi:10.1007/s00138-017-0893-8.
+
+\bibitem{c2}Hashimoto, Sadatsugu, and Shinji Ozawa. “A System for Automatic Judgment of 
+Offsides in Soccer Games.” 2006 IEEE International Conference on Multimedia and Expo, 2006, doi:10.1109/icme.2006.262924.
+
+
+\end{thebibliography}
 \end{document}
+
