@@ -56,9 +56,10 @@ nextId = 1; % ID of the next track
 
 % Detect moving objects, and track them across video frames.
  a = zeros(); 
- %start num at 3 becasue there are 3 training frames
+ %start num at 3 becasue there are 3 training frames. make first value 1000
+ %so that it doesn't stop on the first frame. 
  num =3;  
- hist = centroidArray(a, 1); 
+ hist = centroidArray(a, 1000); 
 while ~isDone(obj.reader)
     num = num +1 ; 
     
