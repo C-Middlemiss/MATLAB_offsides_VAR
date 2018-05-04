@@ -284,8 +284,8 @@ end
             centroid_value = int32(centroid);
            
             
-            if ((hist/(num-1)) *1.25<  (centroid_value(end)/num))
-                disp("went through!" +"     "  + hist(end) +"    " + centroid_value(end));
+            if ((hist/(num-1)*1.25) <  (centroid_value(end)/num))
+                
                 hist= -1; 
             else
             
