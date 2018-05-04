@@ -9,7 +9,7 @@
 % routines in the form of 
 % <matlab:helpview(fullfile(docroot,'toolbox','matlab','matlab_prog','matlab_prog.map'),'nested_functions')
 % nested functions> below.
-function kalmanFilterForTracking
+function plsWork
 
 %% Introduction
 % The Kalman filter has many uses, including applications in control,

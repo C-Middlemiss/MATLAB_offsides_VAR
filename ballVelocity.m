@@ -1,5 +1,5 @@
 %% Calculate velocity of the ball
-videoFileReader = vision.VideoFileReader('plsWork.mp4');
+videoFileReader = vision.VideoFileReader('plsWork.mpeg');
 S = info(videoFileReader);
 frameRate = S.VideoFrameRate; % frame/second
 scale = 1/320; % m/pixel
