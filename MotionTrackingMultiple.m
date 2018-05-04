@@ -70,6 +70,10 @@ while ~isDone(obj.reader)
         detectionToTrackAssignment();
     
     hist = updateAssignedTracks(hist, num);
+    if(hist == -1)
+        %calum's script
+        %calumScript(frame); 
+    end
     
     updateUnassignedTracks();
     deleteLostTracks();
@@ -279,6 +283,7 @@ end
             
             if ((hist/(num-1)) *1.25<  (centroid_value(end)/num))
                 disp("went through!" +"     "  + hist(end) +"    " + centroid_value(end));
+                hist=-1; 
             end
             
             hist = centroidArray(hist, centroid_value(end));
