@@ -55,14 +55,19 @@ tracks = initializeTracks(); % Create an empty array of tracks.
 nextId = 1; % ID of the next track
 
 % Detect moving objects, and track them across video frames.
+ a = zeros(1,8); 
+ b=0; 
+ hist = centroidArray(a, b); 
 while ~isDone(obj.reader)
+    
     frame = readFrame();
     [centroids, bboxes, mask] = detectObjects(frame);
     predictNewLocationsOfTracks();
     [assignments, unassignedTracks, unassignedDetections] = ...
         detectionToTrackAssignment();
     
-    updateAssignedTracks();
+    updateAssignedTracks(hist);
+    
     updateUnassignedTracks();
     deleteLostTracks();
     createNewTracks();
@@ -257,17 +262,33 @@ end
 % the new bounding box, and increases the age of the track and the total
 % visible count by 1. Finally, the function sets the invisible count to 0. 
 
-    function updateAssignedTracks()
+    function updateAssignedTracks(hist)
+       
         numAssignedTracks = size(assignments, 1);
         for i = 1:numAssignedTracks
             trackIdx = assignments(i, 1);
             detectionIdx = assignments(i, 2);
             centroid = centroids(detectionIdx, :);
             bbox = bboxes(detectionIdx, :);
+ 
+           centroid_value = int32(centroid);
+           
+            hist = centroidArray(a, centroid_value); 
+            
+            if (hist(end)>centroid_value)
+                disp("went trhough"); 
+                
+            else
+                disp(hist(end))
+                
+               hist = centroidArray(hist, centroid_value); 
+            
+            end
             
             % Correct the estimate of the object's location
             % using the new detection.
             correct(tracks(trackIdx).kalmanFilter, centroid);
+           
             
             % Replace predicted bounding box with detected
             % bounding box.
@@ -338,9 +359,6 @@ end
             % Create a Kalman filter object.
             kalmanFilter = configureKalmanFilter('ConstantVelocity', ...
                 centroid, [200, 50], [100, 25], 100);
-            scale = 1/320; % meter/pixel
-            frameRate = 30; % frame/second
-            initialVelocity = velociy_pix * frameRate * scale; % pixel/frame * frame/second * meter/pixel
             
            
             % Create a new track.
@@ -370,7 +388,7 @@ end
         frame = im2uint8(frame);
         mask = uint8(repmat(mask, [1, 1, 3])) .* 255;
         
-        minVisibleCount = 8;
+        minVisibleCount = 4;
         if ~isempty(tracks)
               
             % Noisy detections tend to result in short-lived tracks.
