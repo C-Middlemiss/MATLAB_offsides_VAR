@@ -442,22 +442,6 @@ end
         obj.videoPlayer.step(frame);
     end
 
-%% Summary
-% This example created a motion-based system for detecting and
-% tracking multiple moving objects. Try using a different video to see if
-% you are able to detect and track objects. Try modifying the parameters
-% for the detection, assignment, and deletion steps.  
-%
-% The tracking in this example was solely based on motion with the
-% assumption that all objects move in a straight line with constant speed.
-% When the motion of an object significantly deviates from this model, the
-% example may produce tracking errors. Notice the mistake in tracking the
-% person labeled #12, when he is occluded by the tree. 
-%
-% The likelihood of tracking errors can be reduced by using a more complex
-% motion model, such as constant acceleration, or by using multiple Kalman
-% filters for every object. Also, you can incorporate other cues for
-% associating detections over time, such as size, shape, and color. 
 
 
 end

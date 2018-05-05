@@ -394,7 +394,7 @@ end
 function utilities = createUtilities(param)
   % Create System objects for reading video, displaying video, extracting
   % foreground, and analyzing connected components.
-  utilities.videoReader = vision.VideoFileReader('plsWork.mp4');
+  utilities.videoReader = vision.VideoFileReader('testClip2.mp4');
   utilities.videoPlayer = vision.VideoPlayer('Position', [100,100,500,400]);
   utilities.foregroundDetector = vision.ForegroundDetector(...
     'NumTrainingFrames', 10, 'InitialVariance', param.segmentationThreshold);
