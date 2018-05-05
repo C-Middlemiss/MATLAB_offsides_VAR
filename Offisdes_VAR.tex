@@ -87,15 +87,17 @@ Our feature classification is not yet able to determine which team a player is o
 
 This was one of our most difficult tasks to accomplish. Since we were not able to determine what players were on what teams, it is impossible to decide whether or not a player was in an offsides position. 
 
+However, once we could discern between different teams, it would be simple to determine whether or not a player was offsides. Once every player is identified correctly, one of two processes could take place:
+\begin{enumerate}
+\item Every player's positions could be triangulated and plotted on a graph, and any player that is closer to the attacking goal than the second to last defender is tagged as being in an offsides position. 
+\item An imaginary line could be drawn on the center of mass of the second to last defender, and any attacking player whose body is closer to the attacking goal than that line is tagged as being in an offsides position.
+\end{enumerate}
+Once any player is flagged as being offsides, any time a forward pass is made it will check to see whether or not that player received the ball. It does not matter whether or not the player moved back onsides after the ball was played, as they would still be tagged as offsides. Once the ball's velocity has slowed down to a certain point, the player would not be tagged any longer. 
+
 
 \section{Results and Discussion}
 
-Limitations, and how we would move past them
-
-
-\section{Present Issues}
-
-**Andrew** 
+We were not able to accomplish what we would have liked for a multitude of reasons. One of these reasons is the processing power of our machines. Our computers are simple laptops that are not made to run high memory programs and 
 
 \section{Future Work}
 
@@ -125,4 +127,3 @@ Offsides in Soccer Games.” 2006 IEEE International Conference on Multimedia an
 
 \end{thebibliography}
 \end{document}
-
